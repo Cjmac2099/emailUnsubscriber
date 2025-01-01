@@ -1,11 +1,11 @@
-import React from "react";
-import { GetUserAccount } from '@/utils/api';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, {useEffect, useState} from "react";
 
 export default function Home() {
-  //GetUserAccount("blah");
+
   return (
     <>
-    
+      
     </>
   );
 }
