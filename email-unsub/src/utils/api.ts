@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 // GET request - gmail account
-async function GetUserAccount(userId: string) {
+export async function GetUserAccount(userId: string) {
     try {
         const response = await axios({
             method: 'get',
