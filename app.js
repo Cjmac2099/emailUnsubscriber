@@ -1,15 +1,5 @@
 // exported gapiLoaded, gisLoaded, handleAuthClick, handleSignoutClick
-
-// Credentials
-const CLIENT_ID = '383578251946-q6og70togssfmqrtmjueffi3h5b1dsts.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyC8K5NlO2P75b4ohp8ROq__ZdxUfpRvdHM';
-
-// Discovery doc URL for APIs used by the quickstart
-const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
-
-// Authorization scopes required by the API; multiple scopes can be
-// included, separated by spaces.
-const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
+require('dotenv').config();
 
 let tokenClient;
 let gapiInited = false;
@@ -31,7 +21,7 @@ export function gapiLoaded() {
 async function initializeGapiClient() {
   await gapi.client.init({
     apiKey: API_KEY,
-    discoveryDocs: [DISCOVERY_DOC],
+    discoveryDocs: [process.env.DISCOVERY_DOC],
   });
   gapiInited = true;
   maybeEnableButtons();
