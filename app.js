@@ -20,7 +20,7 @@ export function gapiLoaded() {
  */
 async function initializeGapiClient() {
   await gapi.client.init({
-    apiKey: API_KEY,
+    apiKey: process.env.API_KEY,
     discoveryDocs: [process.env.DISCOVERY_DOC],
   });
   gapiInited = true;
@@ -32,8 +32,8 @@ async function initializeGapiClient() {
  */
 export function gisLoaded() {
   tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: CLIENT_ID,
-    scope: SCOPES,
+    client_id: process.env.CLIENT_ID,
+    scope: process.envSCOPES,
     callback: handleAuthResponse,  // Proper callback function here
   });
   gisInited = true;
