@@ -12,12 +12,14 @@
     <body>
 
         <!-- FRONTEND START -->
-        <div id="content-box">
+        <div class="content-header">
             <h1>Gmail Mass Unsubscriber</h1>
 
             <!-- buttons to initiate auth sequence and sign out-->
-            <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
-            <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+            <div class="buttonsBox">
+                <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+                <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+            </div>
         </div>
 
         <!-- Where the labels will appear -->
