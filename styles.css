@@ -1,22 +1,22 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #343434;
+    background-color: #000000;
 }
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #ffffff;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
+    width: 210px;
+    height: 50px;
     margin: 10px 0;
-    background-color: #a91313;
+    background-color: #a12828;
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 21px;
     border-radius: 5px;
 }
 
@@ -28,18 +28,17 @@ button:hover {
     font-size: 16px;
     color: #333;
     background-color: #f9f9f9;
-    padding: 10px;
     border-radius: 5px;
     white-space: pre-wrap;
 }
 
 #content-box {
-    background-color: #ffffff;
+    width: 200px;
     display: flex;
+    background-color: #2b3550;
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 50vh;
-    width: 50%;
-    border: 1px #3c00ff
+    border: 3px #ff0000;
+    border-radius: 15px;
 }
