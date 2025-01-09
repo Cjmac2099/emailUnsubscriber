@@ -16,7 +16,7 @@
             <h1>Gmail Mass Unsubscriber</h1>
 
             <!-- buttons to initiate auth sequence and sign out-->
-            <div id="buttonsBox" class="buttonsBox">
+            <div id="buttonsBox">
                 <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
                 <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
             </div>
@@ -43,11 +43,10 @@
             let gisInited = false;
 
             document.getElementById('signout_button').style.visibility = 'hidden';
-            // document.getElementById('authorize_button').style.display = 'inline-block';
+            document.getElementById('buttonsBox').style.flexDirection = 'column';
 
             // Callback after api.js is loaded.
             function gapiLoaded() {
-                console.log("G-API Loaded");
                 gapi.load('client', initializeGapiClient);
             }
 
@@ -63,7 +62,6 @@
 
             // Callback after Google Identity Services are loaded.
             function gisLoaded() {
-                console.log("G-IS Loaded");
                 tokenClient = google.accounts.oauth2.initTokenClient({
                     client_id: CLIENT_ID,
                     scope: SCOPES,
@@ -76,7 +74,10 @@
             // Enables user interaction after all libraries are loaded.
             function maybeEnableButtons() {
                 if (gapiInited && gisInited) {
+                    console.log("Services successfully enabled.");
                     document.getElementById('authorize_button').style.visibility = 'visible';
+                } else {
+                    console.log("Services failed to load. Check google API and Client.");
                 }
             }
 

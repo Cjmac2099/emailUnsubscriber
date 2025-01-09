@@ -1,3 +1,4 @@
+/* MAIN STUFF */
 body {
     font-family: Arial, sans-serif;
     background-color: #000000;
@@ -25,6 +26,7 @@ button:hover {
     background-color: #ff0000;
 }
 
+/* ID'S */
 #content {
     font-family: Arial, sans-serif;
     font-size: 16px;
@@ -39,6 +41,14 @@ button:hover {
     line-height: 1.3;
 }
 
+#buttonsBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* CLASSES */
 .content-header {
     width: 500px;
     height: 150px;
@@ -51,10 +61,3 @@ button:hover {
     justify-content: center;
 }
 
-.buttonsBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
