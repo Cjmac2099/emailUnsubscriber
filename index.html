@@ -51,7 +51,7 @@
             }
 
             // Callback after the API client is loaded. Loads the discovery doc to initialize the API.
-            async function initializeGapiClient() {
+            async function initializeGapiClient(){
                 await gapi.client.init({
                     apiKey: API_KEY,
                     discoveryDocs: [DISCOVERY_DOC],
@@ -72,7 +72,7 @@
             }
 
             // Enables user interaction after all libraries are loaded.
-            function maybeEnableButtons() {
+            function maybeEnableButtons(){
                 if (gapiInited && gisInited) {
                     console.log("Services successfully enabled.");
                     document.getElementById('authorize_button').style.visibility = 'visible';
@@ -82,7 +82,7 @@
             }
 
             // Sign in the user upon button click.
-            function handleAuthClick() {
+            function handleAuthClick(){
                 tokenClient.callback = async (resp) => {
                     if (resp.error !== undefined) {
                         throw (resp);
@@ -104,7 +104,7 @@
             }
 
             // Sign out the user upon button click.
-            function handleSignoutClick() {
+            function handleSignoutClick(){
                 const token = gapi.client.getToken();
                 if (token !== null) {
                     google.accounts.oauth2.revoke(token.access_token);
@@ -116,7 +116,7 @@
             }
 
             // Print all Labels in the authorized user's inbox. If no labels are found an appropriate message is printed.
-            async function listLabels() {
+            async function listLabels(){
                 let response;
                 try {
                     response = await gapi.client.gmail.users.labels.list({
@@ -136,6 +136,17 @@
                 const output = labels.reduce((str, label) => `${str}${label.name}\n`, 'Labels:\n');
                 document.getElementById('content').innerText = output;
             }
+
+            // TODO: function which finds all subscribed to email list
+            async function getEmailList(){
+                try {
+
+                } catch(err) {
+                    
+                    return;
+                }
+            }
+
         </script>
 
         <!-- Imports -->
