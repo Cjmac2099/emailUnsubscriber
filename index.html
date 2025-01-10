@@ -43,6 +43,7 @@
             let gisInited = false;
 
             document.getElementById('signout_button').style.visibility = 'hidden';
+            document.getElementById('content').style.visibility = 'hidden';
             document.getElementById('buttonsBox').style.flexDirection = 'column';
 
             // Callback after api.js is loaded.
@@ -90,7 +91,9 @@
                     document.getElementById('buttonsBox').style.flexDirection = 'row';
                     document.getElementById('signout_button').style.visibility = 'visible';
                     document.getElementById('authorize_button').innerText = 'Refresh';
-                    await listLabels();
+                    document.getElementById('content').style.visibility = 'visible';
+                    // await listLabels();
+                    await getEmailList();
                 };
 
                 if (gapi.client.getToken() === null) {
@@ -132,6 +135,7 @@
                     document.getElementById('content').innerText = 'No labels found.';
                     return;
                 }
+
                 // Flatten to string to display
                 const output = labels.reduce((str, label) => `${str}${label.name}\n`, 'Labels:\n');
                 document.getElementById('content').innerText = output;
@@ -139,12 +143,25 @@
 
             // TODO: function which finds all subscribed to email list
             async function getEmailList(){
+                let response;
                 try {
-
+                    response = await gapi.client.gmail.users.messages.list({
+                        'userId': 'me'
+                    });
                 } catch(err) {
-                    
+                    document.getElementById('content').innerText = err.message;
                     return;
                 }
+
+                const messages = response.result.messages;
+                if(!messages || messages.length == 0){
+                    console.log("No subscriptions found");
+                    document.getElementById('content').innerText = 'No subscriptions found.';
+                }
+                
+                // Display list
+                const output = messages.reduce((str, mess) => `${str}${mess.name}\n`, 'Mailer:\n');
+                document.getElementById('content').innerText = output;
             }
 
         </script>
