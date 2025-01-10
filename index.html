@@ -148,22 +148,19 @@
                     response = await gapi.client.gmail.users.messages.list({
                         'userId': 'me'
                     });
+                    console.log(response.result.messages);
                 } catch(err) {
                     document.getElementById('content').innerText = err.message;
                     return;
                 }
 
-                const messages = response.result.messages;
-                if(!messages || messages.length == 0){
-                    console.log("No subscriptions found");
-                    document.getElementById('content').innerText = 'No subscriptions found.';
-                }
+                // extract data from response
+                let listOfNames = [];
                 
-                // Display list
-                const output = messages.reduce((str, mess) => `${str}${mess.name}\n`, 'Mailer:\n');
-                document.getElementById('content').innerText = output;
             }
 
+            // TOOO: function which will delete/unsuubscribe from all
+            
         </script>
 
         <!-- Imports -->
