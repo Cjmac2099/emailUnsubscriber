@@ -156,19 +156,23 @@
 
                 let messageList = response.result.messages;
                 let listOfNames = [];
+                let messageDetails;
 
                 // get details of each message
                 for(const message of messageList){
                     try {
-                        let messageDetails = await gapi.client.gmail.users.messages.get({
+                        let responseDetails = await gapi.client.gmail.users.messages.get({
                             'userId': 'me',
                             'id': message.id
                         });
-                        console.log(messageDetails);
+                        messageDetails = responseDetails.result;
+                        console.log("To: " + messageDetails.payload.headers[17].value);
+                        console.log("From: " + messageDetails.payload.headers[18].value);
                     } catch (err) {
                         console.error(`Failed to get message details for message ID ${message.id}:`, err);
+                        return;
                     }
-                }
+                }   
             }
             
 
