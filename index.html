@@ -42,6 +42,8 @@
             let gapiInited = false;
             let gisInited = false;
 
+            let listOfMessages = {}; // hashmap -> listOfMessages[email to find] = full message
+
             document.getElementById('signout_button').style.visibility = 'hidden';
             document.getElementById('content').style.visibility = 'hidden';
             document.getElementById('buttonsBox').style.flexDirection = 'column';
@@ -154,20 +156,22 @@
                     return;
                 }
 
-                let messageList = response.result.messages;
-                let listOfNames = [];
-                let messageDetails;
+                let messages = response.result.messages;
+                let headers = [];
+                let count = 0;
 
                 // get details of each message
-                for(const message of messageList){
+                for(const message of messages){
                     try {
+                        if(count > 10) { break; }
+                        count++;
+
                         let responseDetails = await gapi.client.gmail.users.messages.get({
                             'userId': 'me',
                             'id': message.id
                         });
-                        messageDetails = responseDetails.result;
-                        console.log("To: " + messageDetails.payload.headers[17].value);
-                        console.log("From: " + messageDetails.payload.headers[18].value);
+                        console.log(responseDetails);
+                        
                     } catch (err) {
                         console.error(`Failed to get message details for message ID ${message.id}:`, err);
                         return;
